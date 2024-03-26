@@ -1,6 +1,5 @@
 package com.springboot.email.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamSource;
 import org.springframework.mail.SimpleMailMessage;
@@ -16,8 +15,11 @@ import jakarta.mail.internet.MimeMessage;
 @Service
 public class MailServiceImpl implements MailService {
 
-    @Autowired
     private JavaMailSender javaMailSender;
+
+    public MailServiceImpl(JavaMailSender javaMailSender) {
+        this.javaMailSender = javaMailSender;
+    }
 
     @Value("${spring.mail.username}")
     private String sender;
